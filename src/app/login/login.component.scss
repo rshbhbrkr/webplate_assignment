@@ -1,0 +1,83 @@
+/* Ensure the parent container takes full height and centers the form */
+:host {
+    display: block;
+    height: 100%;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .bg-gray-100 {
+    background-color: #f7fafc;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .max-w-sm {
+    max-width: 400px;
+  }
+  
+  .p-8 {
+    padding: 2rem;
+  }
+  
+  .space-y-6 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-gray-700 {
+    color: #4a5568;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    margin-bottom: 20px;
+  }
+  
+  button:disabled {
+    background-color: #cbd5e0;
+    cursor: not-allowed;
+  }
+  

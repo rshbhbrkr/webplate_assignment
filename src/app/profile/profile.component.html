@@ -1,0 +1,19 @@
+<main class="dashboard-content">
+      <section class="profile-section">
+        <div class="profile-header">
+          <div class="image-container">
+            <img [src]="userData?.image" alt="User Image" class="profile-image" />
+          </div>
+          <h1 class="user-name">{{ userData?.firstName }} {{ userData?.lastName }}</h1>
+        </div>
+        <div class="user-details">
+         
+          <p><strong></strong> &#64;{{ userData?.username }}</p>
+          <p>Gender: {{ userData?.gender }}</p>
+          <p><strong> {{ userData?.email }}</strong></p>
+        </div>
+      </section>
+     
+    </main>
+
+  

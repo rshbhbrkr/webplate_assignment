@@ -1,0 +1,128 @@
+/* Global Colors */
+$primary-color: #1976d2;  /* Material blue */
+$accent-color: #ff4081;   /* Material pink */
+$background-color: #f5f5f5;
+$header-bg-color: #e3f2fd;  /* Light Blue for header */
+$table-header-bg: #2196f3; /* Blue header */
+$button-bg: #4caf50;  /* Green button */
+$button-text-color: #fff; /* White text on button */
+$table-border-color: #e0e0e0; /* Light gray border color */
+
+/* Container for the user list */
+.user-list-container {
+//   margin: 20px;
+//   padding: 20px;
+  background-color: $background-color;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Title */
+.page-title {
+  background-color: $header-bg-color;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  h2 {
+    color: $primary-color;
+    font-size: 24px;
+    margin: 0;
+  }
+}
+
+/* Header Layout for Search and Add User Button */
+.header {
+  display: flex;
+  justify-content: space-between;  /* Align search and add button at both ends */
+  margin-bottom: 20px;
+  align-items: center; /* Align vertically center */
+}
+
+.search-bar {
+  width: 70%;  /* Takes 70% of space for search */
+}
+
+.add-button {
+  align-self: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: $primary-color;
+  color: $button-text-color;
+  border: none;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: $accent-color;
+  }
+}
+
+/* Table Styling */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;  /* Ensure borders collapse together */
+  margin-bottom: 20px;
+}
+
+.user-table th, .user-table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  border: 1px solid $table-border-color;  /* Border added to table cells */
+}
+
+.user-table th {
+  background-color: $table-header-bg;
+  color: white;
+  font-weight: bold;
+}
+
+.mat-paginator {
+  margin-top: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.mat-header-row, .mat-row {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+/* Pagination and Table Styling Adjustments */
+.mat-paginator {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.details-btn {
+    background-color: #f39c12;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Styling for the "Edit" button */
+  .edit-btn {
+    background-color: #38a169;
+    color: white;
+    font-weight: bold;
+  }
+
+  .description-container {
+    display: block;
+    max-width: 100%;
+  }
+  
+ 
+  
+  
+
+  
+  

@@ -1,0 +1,101 @@
+<div class="user-list-container">
+    <div class="page-title">
+      <h2>Product Management</h2>
+    </div>
+
+  <div class="bg-app-bar px-6 h-16 border-b sticky left-0 flex items-center justify-between">
+    <h2 class="title my-0 ltr:pr-4 rtl:pl-4 ltr:mr-4 rtl:ml-4 ltr:border-r rtl:border-l hidden sm:block flex-none">
+       
+    </h2>
+
+    <div class="flex flex-col w-[250px] m-1">
+        <input
+          [(ngModel)]="searchText"
+          class="block w-full p-2 text-gray-900 border mt-2 mb-4 border-gray-300 rounded-none g-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search&hellip;"
+          (keyup)="applyFilter()"
+          type="text"
+        />
+      </div>
+  
+    <span class="flex-1"></span>
+  
+  </div>
+  
+    <table mat-table [dataSource]="dataSource" matSort class="user-table">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let user">{{ user.title }}</td>
+      </ng-container>
+  
+      <!-- <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let user">{{ user.description }}</td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let user">
+            <span>
+              {{ getTruncatedDescription(user) }}
+            </span>
+          <span *ngIf="shouldShowViewMore(user)" (click)="toggleText(user)" class="text-blue-500 cursor-pointer">
+            {{ user.isReadMore ? 'View Less' : ' View More' }}
+          </span>
+        </td>
+      </ng-container>
+      
+      
+      
+
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let user">{{ user.category }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price (USD)</th>
+        <td mat-cell *matCellDef="let user">{{ user.price }}</td>
+      </ng-container>
+
+      <!--
+ <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let user">
+          <button mat-raised-button color="primary" (click)="editUser(user)" class="edit-btn">Edit</button>
+        </td>
+      </ng-container>
+  
+     
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>Details</th>
+        <td mat-cell *matCellDef="let user">
+          <button mat-raised-button color="accent" (click)="viewDetails(user)" class="details-btn">Details</button>
+        </td>
+      </ng-container> -->
+  
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let user" class="flex items-center space-x-2">
+          <img [src]="user.images[0]" alt="User Image" class="avatar h-8 w-10 rounded-full border border-gray-300" />
+          <button mat-raised-button color="accent" (click)="viewDetails(user)"
+            class="bg-blue-500 text-white px-5 py-1 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            UPDATE
+          </button>
+        </td>
+      </ng-container>
+      
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <!-- Pagination -->
+    <mat-paginator [length]="dataSource && dataSource.data ? dataSource.data.length : 0" [pageSize]="6" [pageSizeOptions]="[6, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  

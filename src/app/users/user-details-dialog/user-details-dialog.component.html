@@ -1,0 +1,55 @@
+<div class="flex items-center" mat-dialog-title>
+    <h2 class="headline m-0 flex-auto">
+        Users Details
+    </h2>
+</div>
+<mat-divider class="text-border"></mat-divider>
+<mat-dialog-content class="flex flex-col">
+    <div class="flex flex-col sm:flex-row">
+        <div class=" flex-auto bg-gray-100 p-5 rounded-none shadow-md">
+            <div class="">
+                <div class="profile-card text-center">
+                    <img [src]="user.image" alt="User Image"
+                        class="w-32 h-32 rounded-full border-2 border-gray-300 mx-auto">
+                    <h2 class="text-xl mt-4">{{ user.firstName }} {{ user.lastName }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class=" flex-auto bg-white p-5 rounded-none shadow-md">
+            <h3 class="text-lg font-semibold mb-3">Personal Info</h3>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone:</strong> {{ user.phone }}</p>
+        </div>
+
+        <div class=" bg-white p-5 flex-auto rounded-none shadow-md">
+            <h3 class="text-lg font-semibold mb-3">Address</h3>
+            <p>{{ user.address.address }}</p>
+            <p>{{ user.address.city }}, {{ user.address.state }}</p>
+            <p>{{ user.address.country }}</p>
+        </div>
+
+
+        <div class=" bg-white p-5 flex-auto rounded-none shadow-md">
+            <h3 class="text-lg font-semibold mb-3">Company</h3>
+            <p><strong>Department:</strong> {{ user.company.department }}</p>
+            <p><strong>Title:</strong> {{ user.company.title }}</p>
+        </div>
+
+    </div>
+
+    <div class=" bg-white p-5 rounded-lg shadow-md">
+        <h3 class="text-lg font-semibold mb-3">Crypto</h3>
+        <div class="overflow-y-auto max-h-40">
+            <p><strong>Coin:</strong> {{ user.crypto.coin }}</p>
+            <p><strong>Wallet:</strong> {{ user.crypto.wallet }}</p>
+        </div>
+    </div>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-button mat-dialog-close
+            class="bg-blue-500 text-right text-white px-6 py-2 rounded-md hover:bg-blue-600">
+            Close
+        </button>
+    </mat-dialog-actions>
+</mat-dialog-content>

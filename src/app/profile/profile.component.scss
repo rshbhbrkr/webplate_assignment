@@ -1,0 +1,119 @@
+/* Full-page container */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  /* Header Style */
+  .header {
+    background-color: #3f51b5; /* A color for the header */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Main content layout */
+  .dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    flex-grow: 1; /* Allow the content to expand and take remaining space */
+    background-color: #f4f6f8;
+    overflow: auto;
+  }
+  
+  /* Profile section style */
+  .profile-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px; /* Limit the width for readability */
+  }
+  
+  /* Center the profile image */
+  .image-container {
+    display: flex;
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
+    margin-bottom: 15px;
+  }
+  
+  .profile-image {
+    width: 120px; /* Image width */
+    height: 120px; /* Image height */
+    border-radius: 50%; /* Circular image */
+    object-fit: cover; /* Ensure the image fills the circle and maintains aspect ratio */
+  }
+  
+  .user-name {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .user-details p {
+    font-size: 1.1em;
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  .user-details strong {
+    font-weight: bold;
+  }
+  
+  /* Dashboard cards layout */
+  .dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px; /* Limit width */
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h3 {
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    color: #333;
+  }
+  
+  .card p {
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .profile-container p {
+    margin-bottom: 8px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .profile-image {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .user-name {
+      font-size: 1.5em;
+    }
+  
+    .user-details p {
+      font-size: 1em;
+    }
+  }
+  
