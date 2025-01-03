@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../services/AuthService/auth.service';
 import { Router } from '@angular/router';
+import { LoadingButtonComponent } from '../loading-button/loading-button.component';
 
 @Component({
   selector: 'app-login',
@@ -18,16 +19,16 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    LoadingButtonComponent
   ],
   providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  isLoading = false;
   errorMessage = '';
-
+  show_loading_image:boolean=false
   constructor(
     private fb: FormBuilder,
     private authService: AuthService, 
@@ -50,17 +51,17 @@ export class LoginComponent {
       return;
     }
 
-    this.isLoading = true;
+    this.show_loading_image = true;
 
     const { username, password } = this.loginForm.value;
     this.authService.login(username, password).subscribe(
       (response) => {
-        this.isLoading = false;
+        this.show_loading_image = false;
         this.authService.storeTokenAndUserData(response);
         this.router.navigate(['/profile']);
       },
       (error) => {
-        this.isLoading = false;
+        this.show_loading_image = false;
         this.errorMessage = 'Login failed! Please check your credentials.';
         this.snackBar.open(this.errorMessage, 'Close', {
           duration: 10000,

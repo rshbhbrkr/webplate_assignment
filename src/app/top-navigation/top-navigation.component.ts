@@ -16,7 +16,7 @@ export class TopNavigationComponent implements OnInit {
   userData: any = {};
   isMenuOpen: boolean = false; // Mobile menu state
   isProfileMenuOpen: boolean = false; // Profile menu initially closed
-
+  isMobileMenuOpen: boolean = false;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -30,6 +30,10 @@ export class TopNavigationComponent implements OnInit {
 
   toggleProfileMenu(): void {
     this.isProfileMenuOpen = !this.isProfileMenuOpen;
+  }
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
   logout(): void {

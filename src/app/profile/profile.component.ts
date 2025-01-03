@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/AuthService/auth.service';
 import { Title } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })

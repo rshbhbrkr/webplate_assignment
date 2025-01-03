@@ -12,16 +12,18 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { UserDetailsDialogComponent } from './user-details-dialog/user-details-dialog.component';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { LoadingButtonComponent } from '../loading-button/loading-button.component';
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule,MatTableModule, MatPaginatorModule, MatSortModule,MatPaginatorModule,FormsModule,MatInputModule,MatDialogModule],
+  imports: [CommonModule,MatTableModule, MatPaginatorModule, MatSortModule,MatPaginatorModule,FormsModule,MatInputModule,MatDialogModule,LoadingButtonComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
 
 export class UsersComponent implements OnInit,OnDestroy {
   searchText: string = '';
+  show_loading_image:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
   @ViewChild(MatSort) sort: MatSort | null = null;
 
@@ -37,17 +39,22 @@ export class UsersComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    this.show_loading_image=true;
     this.userSubscription.add(
+      
       this.userService.getUsers().subscribe(
         (data) => {
+          this.show_loading_image=false;
           this.users = data.users; 
           this.dataSource = new MatTableDataSource(this.users);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
         (error) => {
+          this.show_loading_image=false;
           console.error('Error fetching user data:', error);
           this.snackBar.open('Failed to load users!', 'Close', { duration: 3000 });
+          
         }
       )
     );
@@ -63,6 +70,7 @@ export class UsersComponent implements OnInit,OnDestroy {
 
   editUser(user: any): void {
     console.log('Editing user:', user);
+    this.snackBar.open('Edit functionality is temporarily unavailable.', 'Close', { duration: 3000 });
   }
   
   viewDetails(user: any): void {

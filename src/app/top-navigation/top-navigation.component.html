@@ -1,66 +1,79 @@
 <nav class="bg-gray-800">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="relative flex h-16 items-center justify-between">
-        <!-- Mobile menu button -->
-        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-          <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-            <span class="absolute -inset-0.5"></span>
-            <span class="sr-only">Open main menu</span>
-            <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <!-- Mobile menu button -->
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <button (click)="toggleMobileMenu()" 
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+          <span class="sr-only">Open main menu</span>
+          <svg *ngIf="!isMobileMenuOpen" class="block h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+          <svg *ngIf="isMobileMenuOpen" class="block h-6 w-6" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex shrink-0 items-center">
+          <img class="h-8 w-auto" [src]="userData.image" alt="Logo">
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <a routerLink="/profile" routerLinkActive="active-link" 
+               class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Profile</a>
+            <a routerLink="/users" routerLinkActive="active-link" 
+               class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Users</a>
+            <a routerLink="/products" routerLinkActive="active-link" 
+               class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Products</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logout button at the end of navigation -->
+      <div class="hidden sm:flex items-center ml-6">
+        <button (click)="logout()" 
+                class="rounded-md px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 hover:text-white">
+          Logout
+        </button>
+      </div>
+
+      <!-- Profile dropdown -->
+      <div class="relative ml-3">
+        <div>
+          <button (click)="toggleProfileMenu()" 
+                  class="flex items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 p-2" 
+                  id="user-menu-button" 
+                  [attr.aria-expanded]="isProfileMenuOpen.toString()" 
+                  aria-haspopup="true">
+            <span class="sr-only">Open user menu</span>
+            <img class="h-8 w-8 rounded-full bg-white p-1" [src]="userData.image" alt="User Avatar">
+            <span class="ml-2 text-white">{{ userData.firstName }} {{ userData.lastName }}</span>
           </button>
         </div>
-  
-        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex shrink-0 items-center">
-            <img class="h-8 w-auto" [src]="userData.image" alt="Logo">
-          </div>
-          <div class="hidden sm:ml-6 sm:block">
-            <div class="flex space-x-4">
-              <a routerLink="/profile" routerLinkActive="active-link" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" >Profile</a>
-              <a routerLink="/users" routerLinkActive="active-link" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Users</a>
-              <a routerLink="/products" routerLinkActive="active-link" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Product</a>
-            </div>
-          </div>
+        
+        <div *ngIf="isProfileMenuOpen" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+          <a routerLink="/profile" routerLinkActive="active-link" 
+             class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Your Profile</a>
+          <button (click)="logout()" 
+                  class="block w-full px-4 py-2 text-sm text-gray-700 text-left" role="menuitem" tabindex="-1">Sign out</button>
         </div>
-  
-        <!-- Profile dropdown -->
-        <div class="relative ml-3">
+      </div>
+    </div>
+  </div>
 
-          <div>
-            <button (click)="toggleProfileMenu()" 
-                    class="relative flex items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 p-2" 
-                    id="user-menu-button" 
-                    [attr.aria-expanded]="isProfileMenuOpen.toString()" 
-                    aria-haspopup="true">
-              <span class="sr-only">Open user menu</span>
-              
-              <!-- User Avatar -->
-              <img class="h-8 w-8 rounded-full bg-white p-1" [src]="userData.image" alt="User Avatar">
-              
-              <!-- User's First Name -->
-              <span class="ml-2 text-white">{{ userData.firstName  }} {{ userData.lastName  }}</span>
-            </button>
-          </div>
-          
-          <div *ngIf="isProfileMenuOpen" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-            <a routerLink="/profile" routerLinkActive="active-link" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Your Profile</a>
-            
-            <button (click)="logout()" class="block w-full px-4 py-2 text-sm text-gray-700 text-left" role="menuitem" tabindex="-1">Sign out</button>
-          </div>
-        </div>
-      </div>
+  <!-- Mobile menu -->
+  <div *ngIf="isMobileMenuOpen" class="sm:hidden">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <a routerLink="/profile" 
+         class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900">Profile</a>
+      <a routerLink="/users" routerLinkActive="active-link" 
+         class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Users</a>
+      <a routerLink="/products" routerLinkActive="active-link" 
+         class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Products</a>
+      <button (click)="logout()" 
+              class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Logout</button>
     </div>
-  
-    <!-- Mobile menu -->
-    <div class="sm:hidden" id="mobile-menu">
-      <div class="space-y-1 px-2 pb-3 pt-2">
-        <a routerLink="" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-        <a routerLink="/profile" routerLinkActive="active-link" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Profile</a>
-        <a routerLink="/users" routerLinkActive="active-link" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Users</a>
-        <a routerLink="/products" routerLinkActive="active-link" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage Products</a>
-      </div>
-    </div>
-  </nav>
-  
+  </div>
+</nav>

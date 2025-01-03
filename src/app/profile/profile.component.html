@@ -9,8 +9,8 @@
         <div class="user-details">
          
           <p><strong></strong> &#64;{{ userData?.username }}</p>
-          <p>Gender: {{ userData?.gender }}</p>
-          <p><strong> {{ userData?.email }}</strong></p>
+          <p>Gender: {{ userData?.gender | titlecase }}</p>
+          <p class="text-blue-500"><strong class="text-blue-500"> {{ userData?.email }}</strong></p>
         </div>
       </section>
      
